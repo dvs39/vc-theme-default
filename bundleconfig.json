@@ -41,6 +41,12 @@
         ]
     },
     {
+        "outputFileName": "assets/static/bundle/customerReviews-scripts.js",
+        "inputFiles":[
+            "assets/js/customerReviews/*.js"
+        ]
+    },
+    {
         "outputFileName": "assets/static/bundle/styles.css",
         "inputFiles": [
             "assets/storefront.css",

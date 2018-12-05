@@ -68,7 +68,7 @@ gulp.task('min:js', function () {
             .pipe(sourcemaps.init())
             .pipe(mapSources())
             .pipe(concat(bundle.outputFileName))
-            .pipe(uglify({ mangle: false }))
+            //.pipe(uglify({ mangle: false }))
             .pipe(sourcemaps.write("."))
             .pipe(gulp.dest('.'));
     });

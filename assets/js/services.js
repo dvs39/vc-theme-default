@@ -253,3 +253,17 @@ storefrontApp.service('orderService', ['$http', function ($http) {
         }
     }
 }]);
+
+//  ['$resource', function ($resource) {
+//     return $resource('api/customerReviews', {}, {
+//         search: { method: 'POST', url: 'api/customerReviews/search' },
+//         update: { method: 'POST' }
+//     });
+// }]);
+storefrontApp.service('customerReviewsApi', ['$http', function($http){
+    return {
+        search: function(productId) {
+            return $http.post('storefront/customerReviews/search', { productIds: [productId]});
+        }
+    }
+}]);
