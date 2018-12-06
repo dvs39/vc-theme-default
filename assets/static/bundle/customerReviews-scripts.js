@@ -1,29 +1,38 @@
-'use strict'
-angular.module('storefrontApp')
+var moduleName = "storefront.customerReviews";
+
+if (storefrontAppDependencies != undefined) {
+    storefrontAppDependencies.push(moduleName);
+}
+
+angular.module(moduleName, ['ngResource']);
+
+angular.module('storefront.customerReviews')
     .component('vcCustomerReviewsList', {
         templateUrl: 'themes/assets/js/customerReviews/customerReviews-list.tpl.liquid',
         bindings: {
-            productId: '='
+            productId: '<'
         },
-        controller: ['$scope', 'customerReviewsApi', function($scope, customerReviewsApi) {
-            this.state = 'notLoaded';
+        controller: ['$scope', 'storefront.customerReviewsApi', function($scope, customerReviewsApi) {
+            var $ctrl = this;
+            $ctrl.state = 'notLoaded';
 
-            this.initialize = function () {
-                customerReviewsApi.search({ productIds: ["productId"] }).then(function(response) {
-                    this.reviewList = response.data.results;
-                });
+            $ctrl.initialize = function () {
+                 customerReviewsApi.search({ productIds: [$ctrl.productId] }, function(response) {
+                    $ctrl.reviewList = response;//.filter(e => e.isActive);
+                 });
             };
 
-            this.onInit = function () {
-                this.state = 'loaded';
-                this.initialize();
+            $ctrl.$onInit = function () {
+                $ctrl.state = 'loaded';
+                $ctrl.initialize();
             };
         }]
     });
-angular.module('storefrontApp')
+
+angular.module('storefront.customerReviews')
     .factory('storefront.customerReviewsApi', ['$resource', function ($resource) {
-        return $resource('api/customerReviews', {}, {
-            search: { method: 'POST', url: 'api/customerReviews/search' },
+        return $resource('storefrontapi/customerReview', {}, {
+            search: { method: 'POST', url: 'storefrontapi/customerReview/search', isArray: true },
             update: { method: 'POST' }
         });
     }]);

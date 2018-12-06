@@ -1,22 +1,20 @@
-'use strict'
-angular.module('storefrontApp')
+angular.module('storefront.customerReviews')
     .component('vcCustomerReviewsList', {
         templateUrl: 'themes/assets/js/customerReviews/customerReviews-list.tpl.liquid',
         bindings: {
-            productId: '='
+            productId: '<'
         },
-        controller: ['$scope', 'customerReviewsApi', function($scope, customerReviewsApi) {
-            this.state = 'notLoaded';
+        controller: ['$scope', 'storefront.customerReviewsApi', function($scope, customerReviewsApi) {
+            var $ctrl = this;
 
-            this.initialize = function () {
-                customerReviewsApi.search({ productIds: ["productId"] }).then(function(response) {
-                    this.reviewList = response.data.results;
-                });
+            $ctrl.initialize = function () {
+                 customerReviewsApi.search({ productIds: [$ctrl.productId] }, function(response) {
+                    $ctrl.reviewList = response;
+                 });
             };
 
-            this.onInit = function () {
-                this.state = 'loaded';
-                this.initialize();
+            $ctrl.$onInit = function () {
+                $ctrl.initialize();
             };
         }]
     });

@@ -1,4 +1,11 @@
 <div>
-test component 
-<p>{{ $ctrl.state }}</p>
+    <h4>Customer reviews</h4>
+    <p ng-repeat="review in $ctrl.reviewList | filter: {isActive: true}">
+        <span ng-bind="review.content"></span>
+        <br />
+        <time pubdate datetime="review.createdDate | '%Y-%m-%d'">
+            <em class="text-light" ng-bind="review.createdDate | date: 'short'"></em>
+        </time>
+    </p>
+    <p ng-if="($ctrl.reviewList | filter: {isActive: true}).length === 0">No reviews for this product yet</p>
 </div>
