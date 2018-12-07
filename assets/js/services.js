@@ -144,7 +144,7 @@ storefrontApp.service('cartService', ['$http', function ($http) {
         addCoupon: function (couponCode) {
             return $http.post('storefrontapi/cart/coupons/' + couponCode);
         },
-        removeCoupon: function (couponCode) {            
+        removeCoupon: function (couponCode) {
             return $http.delete('storefrontapi/cart/coupons?couponCode=' + couponCode);
         },
         validateCoupon: function (coupon) {
@@ -172,7 +172,7 @@ storefrontApp.service('cartService', ['$http', function ($http) {
             return $http.post('storefrontapi/cart/createorder', bankCardInfo);
         },
         updateCartComment: function (cartComment) {
-            return $http.put('storefrontapi/cart/comment', { comment: cartComment });
+            return $http.put('storefrontapi/cart/comment', '"' + cartComment + '"');
         }
     }
 }]);
