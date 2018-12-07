@@ -212,7 +212,7 @@ storefrontApp.service('cartService', ['$http', function ($http) {
             return $http.post('storefrontapi/cart/createorder', bankCardInfo);
         },
         updateCartComment: function (cartComment) {
-            return $http.put('storefrontapi/cart/comment', '"' + cartComment + '"');
+            return $http.put('storefrontapi/cart/comment', { comment: cartComment });
         }
     }
 }]);
