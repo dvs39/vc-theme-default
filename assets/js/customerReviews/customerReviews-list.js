@@ -8,7 +8,7 @@ angular.module('storefront.customerReviews')
             var $ctrl = this;
 
             $ctrl.initialize = function () {
-                 customerReviewsApi.search({ productIds: [$ctrl.productId] }, function(response) {
+                 customerReviewsApi.search({ productIds: [$ctrl.productId], take: 10 }, function(response) {
                     $ctrl.reviewList = response;
                  });
             };

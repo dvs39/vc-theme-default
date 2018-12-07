@@ -1,7 +1,10 @@
-<div>
+<div ng-if="$ctrl.reviewList.length > 0">
     <h4>Customer reviews</h4>
     <p ng-repeat="review in $ctrl.reviewList | filter: {isActive: true}">
+        <b ng-bind="review.authorNickname"></b>
+        <br/>
         <span ng-bind="review.content"></span>
+        <angular-rating-icons readonly="true" max="5" ng-model="review.rate"></angular-rating-icons>
         <br />
         <time pubdate datetime="review.createdDate | '%Y-%m-%d'">
             <em class="text-light" ng-bind="review.createdDate | date: 'short'"></em>

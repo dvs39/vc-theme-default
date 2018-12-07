@@ -4,7 +4,7 @@ if (storefrontAppDependencies != undefined) {
     storefrontAppDependencies.push(moduleName);
 }
 
-angular.module(moduleName, ['ngResource']);
+angular.module(moduleName, ['ngResource', 'angular-rating-icons']);
 
 angular.module('storefront.customerReviews')
     .component('vcCustomerReviewsList', {
@@ -14,16 +14,14 @@ angular.module('storefront.customerReviews')
         },
         controller: ['$scope', 'storefront.customerReviewsApi', function($scope, customerReviewsApi) {
             var $ctrl = this;
-            $ctrl.state = 'notLoaded';
 
             $ctrl.initialize = function () {
-                 customerReviewsApi.search({ productIds: [$ctrl.productId] }, function(response) {
-                    $ctrl.reviewList = response;//.filter(e => e.isActive);
+                 customerReviewsApi.search({ productIds: [$ctrl.productId], take: 10 }, function(response) {
+                    $ctrl.reviewList = response;
                  });
             };
 
             $ctrl.$onInit = function () {
-                $ctrl.state = 'loaded';
                 $ctrl.initialize();
             };
         }]

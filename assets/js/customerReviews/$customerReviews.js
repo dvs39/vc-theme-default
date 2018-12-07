@@ -4,4 +4,4 @@ if (storefrontAppDependencies != undefined) {
     storefrontAppDependencies.push(moduleName);
 }
 
-angular.module(moduleName, ['ngResource']);
+angular.module(moduleName, ['ngResource', 'angular-rating-icons']);
