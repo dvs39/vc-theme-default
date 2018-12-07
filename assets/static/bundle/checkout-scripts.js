@@ -212,7 +212,7 @@ storefrontApp.service('cartService', ['$http', function ($http) {
             return $http.post('storefrontapi/cart/createorder', bankCardInfo);
         },
         updateCartComment: function (cartComment) {
-            return $http.put('storefrontapi/cart/comment', { comment: cartComment });
+            return $http.put('storefrontapi/cart/comment', '"' + cartComment + '"');
         }
     }
 }]);
@@ -310,6 +310,7 @@ storefrontApp.service('customerReviewsApi', ['$http', function($http){
         }
     }
 }]);
+
 var storefrontApp = angular.module('storefrontApp');
 
 storefrontApp.directive('vcContentPlace', ['$compile', 'marketingService', function ($compile, marketingService) {
