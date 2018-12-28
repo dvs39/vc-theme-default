@@ -7,6 +7,7 @@
             "assets/ideal-image-slider.min.js",
             "assets/ideal-image-slider-bullet-nav.js",
             "assets/ideal-image-slider-captions.js",
+            "assets/static/bundle/compiled/*.js",
             "assets/js/*.js",
             "assets/js/products-compare/*.js",
             "assets/js/lists/add-to-list.js"
@@ -15,7 +16,7 @@
     {
         "outputFileName": "assets/static/bundle/checkout-scripts.js",
         "inputFiles": [
-            "assets/js/app.js",
+            "assets/js/app.ts",
             "assets/js/services.js",
             "assets/js/directives.js",
             "assets/js/filters.js",
@@ -28,7 +29,7 @@
         "outputFileName": "assets/static/bundle/account-scripts.js",
         "inputFiles": [
             "assets/modernizr.min.js",
-            "assets/js/app.js",
+            "assets/js/app.ts",
             "assets/js/services.js",
             "assets/js/main.js",
             "assets/js/cart.js",

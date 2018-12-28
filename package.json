@@ -14,7 +14,11 @@
         "theme",
         "electronics"
     ],
-    "dependencies": {},
+    "dependencies": {
+        "@types/angular": "^1.6.53",
+        "gulp-typescript": "^5.0.0",
+        "typescript": "^3.2.2"
+    },
     "devDependencies": {
         "angular-rating-icons": "^1.0.3",
         "autoprefixer": "^7.1.2",

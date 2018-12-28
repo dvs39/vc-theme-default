@@ -25,9 +25,11 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
 
     eslint = require('gulp-eslint'),
-        
+
     zip = require('gulp-zip'),
     gitignore = require('gulp-exclude-gitignore');
+    ts = require('gulp-typescript');
+    tsProject = ts.createProject("tsconfig.json");
 
 var regex = {
     css: /\.css$/,
@@ -35,6 +37,8 @@ var regex = {
     js: /\.js$/,
     ext: /\.([^\.]+)$/
 };
+
+const tsCompiled = './assets/static/bundle/compiled';
 
 function getPackage() {
     delete require.cache[require.resolve('./package.json')];
@@ -62,7 +66,20 @@ function mapSources() {
     });
 }
 
-gulp.task('min:js', function () {
+gulp.task('build:ts', function() {
+    //pick all *.ts inputFiles from bundleconfig.json
+     var files = [].concat.apply([], getBundleConfig().map(function (bundle) {
+         var fileName = bundle.inputFiles;
+         return [...fileName];
+     })).filter(e => e.indexOf('.ts') > -1);
+
+     console.log('files: ', files);
+    return gulp.src(files)
+            .pipe(tsProject())
+            .js.pipe(gulp.dest(tsCompiled));
+});
+
+gulp.task('min:js', ['build:ts'], function () {
     var tasks = getBundles(regex.js).map(function (bundle) {
         return gulp.src(bundle.inputFiles, { base: '.' })
             .pipe(sourcemaps.init())
@@ -120,6 +137,7 @@ gulp.task('clean', function () {
         return [fileName, fileName.replace(regex.ext, '.$1.map')];
     }));
 
+    files.push(tsCompiled + '/*.js');
     return del(files);
 });
 

@@ -7,7 +7,8 @@ var storefrontAppDependencies = [
 var storefrontApp = angular.module('storefrontApp', storefrontAppDependencies);
 
 storefrontApp.factory('httpErrorInterceptor', ['$q', '$rootScope', function ($q, $rootScope) {
-    var httpErrorInterceptor = {};
+    var httpErrorInterceptor:any;
+    httpErrorInterceptor = {};
 
     httpErrorInterceptor.responseError = function (rejection) {
         if (rejection.data && rejection.data.message) {
@@ -37,7 +38,7 @@ storefrontApp.config(['$httpProvider', '$translateProvider', function ($httpProv
     $httpProvider.interceptors.push('httpErrorInterceptor');
 
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-    $translateProvider.useUrlLoader(BASE_URL + 'themes/localization.json');
+    //$translateProvider.useUrlLoader(BASE_URL + 'themes/localization.json');
     $translateProvider.preferredLanguage('en');
 
 }]);
