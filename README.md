@@ -143,7 +143,7 @@ task watch
 ```
 then press **Enter**.
 
-The following gulp tasks available to you: 
+The following gulp tasks available to you:
 1. **default**: default task. Bundles and minifies theme files.
 2. **clean**: removes bundled & minified files.
 3. **lint**: runs **eslint** to check for warnings & errors in javascript files. Look at [eslint site](https://eslint.org/) for details.
@@ -159,8 +159,8 @@ The following gulp tasks available to you:
 
 Storefront theme localization is very similar to [VirtoCommerce Platform localization](https://virtocommerce.com/docs/vc2devguide/working-with-platform-manager/localization-implementation). Check it for details on working with translation files.
 
-1. Make a copy of &lt;*theme repository location*&gt;\locales\en.default.json file 
-2. Rename the copied file to begin with your needed language 2 letter code (e.g., "es.default.json"). 
+1. Make a copy of &lt;*theme repository location*&gt;\locales\en.default.json file
+2. Rename the copied file to begin with your needed language 2 letter code (e.g., "es.default.json").
 3. Translate the file content.
 
 ### Adding new language to store
